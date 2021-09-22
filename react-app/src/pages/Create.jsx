@@ -41,7 +41,6 @@ function Create() {
 
   useEffect(() => {
     handleValidate(inputs);
-    console.log(inputs);
   }, [inputs]);
 
   function handleChange(e) {
