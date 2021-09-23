@@ -6,6 +6,11 @@ import {
   Button,
   CircularProgress,
 } from "@material-ui/core";
+import {
+  Add as AddIcon,
+  Edit as EditIcon,
+  Delete as DeleteIcon,
+} from "@material-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { createUser } from "./../actions/user";
 
@@ -117,6 +122,7 @@ function Create() {
           type="submit"
           variant="contained"
           color="primary"
+          startIcon={<AddIcon />}
         >
           Submit
         </Button>
