@@ -7,11 +7,12 @@ import {
     SET_CURRENT_USER,
     USER_LOADING
 } from "./../actionTypes/user";
+import { api_url } from "./../config";
 
 // Register User 
 export const registerUser = (userData, history) => dispatch => {
     axios
-        .post('/api/users/register', userData)
+        .post(`${api_url}/api/users/register`, userData)
         .then(res => history.push('/login')) // re-direct to login on successful register 
         .catch(err => 
             dispatch({
@@ -24,7 +25,7 @@ export const registerUser = (userData, history) => dispatch => {
 // Login - get user token 
 export const loginUser = userData => dispatch => {
     axios
-        .post('/api/users/login', userData)
+        .post(`${api_url}/api/users/login`, userData)
         .then(res => {
             // save to localStorage
             const { token } = res.data;

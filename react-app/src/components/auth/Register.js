@@ -19,7 +19,7 @@ class Register extends Component {
 
     componentDidMount() {
         // If logged in and user navigates to Register page, should redirect them to dashboard
-        if(this.props.auth.isAuthenticated) {
+        if (this.props.auth.isAuthenticated) {
             this.props.history.push('/dashboard');
         }
     }
@@ -58,11 +58,11 @@ class Register extends Component {
                         <Link to="/" className="btn-flat waves-effect">
                             <i className="material-icons left">keyboard_backspace</i> Back to
                             home
-            </Link>
+                        </Link>
                         <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                             <h4>
                                 <b>Register</b> below
-              </h4>
+                            </h4>
                             <p className="grey-text text-darken-1">
                                 Already have an account? <Link to="/login">Log in</Link>
                             </p>
@@ -75,10 +75,10 @@ class Register extends Component {
                                     error={errors.name}
                                     id="name"
                                     type="text"
-                                    className = { classnames("", { invalid: errors.name }) }
+                                    className={classnames("", { invalid: errors.name })}
                                 />
                                 <label htmlFor="name">Name</label>
-                                <span className="red-text"> { errors.name } </span>
+                                <span className="red-text"> {errors.name} </span>
                             </div>
                             <div className="input-field col s12">
                                 <input
@@ -87,10 +87,10 @@ class Register extends Component {
                                     error={errors.email}
                                     id="email"
                                     type="email"
-                                    className= { classnames("", { invalid: errors.email }) }
+                                    className={classnames("", { invalid: errors.email })}
                                 />
                                 <label htmlFor="email">Email</label>
-                                <span className="red-text"> { errors.email } </span>
+                                <span className="red-text"> {errors.email} </span>
                             </div>
                             <div className="input-field col s12">
                                 <input
@@ -99,10 +99,10 @@ class Register extends Component {
                                     error={errors.password}
                                     id="password"
                                     type="password"
-                                    className={ classnames("", { invalid: errors.password }) }
+                                    className={classnames("", { invalid: errors.password })}
                                 />
                                 <label htmlFor="password">Password</label>
-                                <span className="red-text"> { errors.password } </span>
+                                <span className="red-text"> {errors.password} </span>
                             </div>
                             <div className="input-field col s12">
                                 <input
@@ -111,10 +111,10 @@ class Register extends Component {
                                     error={errors.password2}
                                     id="password2"
                                     type="password"
-                                    className={ classnames("", { invalid: errors.password2 })}
+                                    className={classnames("", { invalid: errors.password2 })}
                                 />
                                 <label htmlFor="password2">Confirm Password</label>
-        <span className="red-text"> { errors.password2 } </span>
+                                <span className="red-text"> {errors.password2} </span>
                             </div>
                             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                                 <button
@@ -128,7 +128,7 @@ class Register extends Component {
                                     className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                                 >
                                     Sign up
-                </button>
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -141,12 +141,10 @@ class Register extends Component {
 Register.propTypes = {
     registerUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    errors: state.errors
 });
 
 export default connect(

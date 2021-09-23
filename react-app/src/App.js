@@ -8,6 +8,7 @@ import store from "./store/store.js"  //
 import { setCurrentUser, logoutUser } from "./actions/authActions"; //
 import { Provider } from "react-redux"; //
 import Login from "./components/auth/Login";  //
+import Register from "./components/auth/Register";  //
 import Read from "./pages/Read";
 import Create from "./pages/Create";
 import Update from "./pages/Update";
@@ -38,7 +39,8 @@ function App() {
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route path="/" exact component={Read} />
+          <Route path="/" exact component={Login} />
+          <Route path="/register" exact component={Register} />
           <Route path="/create" exact component={Create} />
           <Route path="/update/:id" exact component={Update} />
           <Route exact path="/login" component={Login} />
