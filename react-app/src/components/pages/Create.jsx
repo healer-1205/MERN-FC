@@ -13,6 +13,7 @@ import {
 } from "@material-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { createUser } from "../../actions/user";
+import Navbar from "../layouts/Navbar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,6 +83,7 @@ function Create() {
 
   return (
     <React.Fragment>
+      <Navbar />
       <h1 style={{ textAlign: "center" }}>Create User</h1>
       <form
         className={classes.root}

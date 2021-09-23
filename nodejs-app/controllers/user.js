@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../models/Employee");
 
 exports.createUser = async (req, res) => {
   if (!req.body.firstName || !req.body.lastName || !req.body.email) {

@@ -27,6 +27,7 @@ import {
 } from "@material-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsers, deleteUserById } from "../../actions/user";
+import Navbar from "../layouts/Navbar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -85,13 +86,7 @@ function Read() {
 
   return (
     <React.Fragment>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            ReactJs CRUD App With React Redux Thunk
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <Navbar />
       <Link to="/create">
         <Button
           variant="contained"
