@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import {
   makeStyles,
   TextField,
   Button,
   CircularProgress,
 } from "@material-ui/core";
-import {
-  Add as AddIcon,
-  Edit as EditIcon,
-  Delete as DeleteIcon,
-} from "@material-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
-import { createUser } from "./../actions/user";
+import { getUserById, updateUserById } from "../../actions/user";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,22 +26,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Create() {
+function Update() {
   const classes = useStyles();
   const history = useHistory();
+  const { id } = useParams();
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.users?.loading);
+  const user = useSelector((state) => state.users?.item);
   const [inputs, setInputs] = useState({
     firstName: "",
     lastName: "",
     email: "",
   });
-  const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    handleValidate(inputs);
-  }, [inputs]);
+    dispatch(getUserById(id));
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (user) {
+      setInputs(user);
+    }
+  }, [user]);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -56,33 +58,15 @@ function Create() {
   function handleSubmit(e) {
     e.preventDefault();
     setSubmitted(true);
-    if (handleValidate(inputs)) {
-      dispatch(createUser(inputs, history));
+    if (!inputs.firstName || !inputs.lastName || !inputs.email) {
+      return;
     }
-  }
-
-  function handleValidate(values) {
-    let errors = {};
-    let isValid = true;
-    if (!values["firstName"]) {
-      isValid = false;
-      errors["firstName"] = "Please enter first name";
-    }
-    if (!values["lastName"]) {
-      isValid = false;
-      errors["lastName"] = "Please enter last name.";
-    }
-    if (!values["email"]) {
-      isValid = false;
-      errors["email"] = "Please enter email address";
-    }
-    setErrors(errors);
-    return isValid;
+    dispatch(updateUserById(id, inputs, history));
   }
 
   return (
     <React.Fragment>
-      <h1 style={{ textAlign: "center" }}>Create User</h1>
+      <h1 style={{ textAlign: "center" }}>Update User</h1>
       <form
         className={classes.root}
         style={{
@@ -94,7 +78,6 @@ function Create() {
         onSubmit={handleSubmit}
       >
         <TextField
-          type="text"
           name="firstName"
           label="First Name"
           value={inputs.firstName}
@@ -102,7 +85,6 @@ function Create() {
           fullWidth
         />
         <TextField
-          type="text"
           name="lastName"
           label="Last Name"
           value={inputs.lastName}
@@ -110,7 +92,6 @@ function Create() {
           fullWidth
         />
         <TextField
-          type="email"
           name="email"
           label="Email"
           value={inputs.email}
@@ -122,7 +103,6 @@ function Create() {
           type="submit"
           variant="contained"
           color="primary"
-          startIcon={<AddIcon />}
         >
           Submit
         </Button>
@@ -134,4 +114,4 @@ function Create() {
   );
 }
 
-export default Create;
+export default Update;

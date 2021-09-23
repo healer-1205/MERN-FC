@@ -26,7 +26,7 @@ import {
   Delete as DeleteIcon,
 } from "@material-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
-import { getUsers, deleteUserById } from "./../actions/user";
+import { getUsers, deleteUserById } from "../../actions/user";
 
 const useStyles = makeStyles((theme) => ({
   root: {

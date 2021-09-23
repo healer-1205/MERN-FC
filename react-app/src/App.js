@@ -9,9 +9,11 @@ import { setCurrentUser, logoutUser } from "./actions/authActions"; //
 import { Provider } from "react-redux"; //
 import Login from "./components/auth/Login";  //
 import Register from "./components/auth/Register";  //
-import Read from "./pages/Read";
-import Create from "./pages/Create";
-import Update from "./pages/Update";
+import PrivateRoute from "./private-route/PrivateRoute"; //
+import Read from "./components/pages/Read";
+import Create from "./components/pages/Create";
+import Update from "./components/pages/Update";
+import Navbar from "./components/layouts/Navbar";
 
 // Check for token to keep user logged in 
 if (localStorage.jwtToken) {
@@ -38,12 +40,13 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Switch>
           <Route path="/" exact component={Login} />
-          <Route path="/register" exact component={Register} />
-          <Route path="/create" exact component={Create} />
-          <Route path="/update/:id" exact component={Update} />
           <Route exact path="/login" component={Login} />
+          <Route path="/register" exact component={Register} />
+        <Switch>
+          <PrivateRoute exact path="/dashboard" component={Read} />
+          <PrivateRoute path="/create" exact component={Create} />
+          <PrivateRoute path="/update/:id" exact component={Update} />
         </Switch>
       </Router>
     </Provider>
