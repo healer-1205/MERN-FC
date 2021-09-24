@@ -22,16 +22,18 @@ mongoose
   });
 
 // Routes
-// const userRoutes = require("./routes/user");
+const employeeRoutes = require("./routes/employee");
+// Controllers
 const usersControllers = require('./controllers/users');
 
 // Middlewares
 app.use(bodyParser.json());
 app.use(cors());
 
-// Routes
+// // Routes
 // app.use("/api", userRoutes);
-app.use("/api/users", usersControllers)
+app.use("/api/users", usersControllers);
+app.use("/api/employees", employeeRoutes);
 
 app.get("/", (req, res) => {
   res.send("App is working...");

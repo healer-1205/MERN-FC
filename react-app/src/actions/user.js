@@ -22,7 +22,7 @@ export function createUser(data, history) {
   return (dispatch) => {
     dispatch({ type: CREATE_USER_REQUEST });
     axios
-      .post(`${api_url}/api/user`, data)
+      .post(`${api_url}/api/employees/create`, data)
       .then(function (res) {
         console.log("res=>", res.data);
         setTimeout(() => {
@@ -51,7 +51,7 @@ export function getUsers() {
   return (dispatch) => {
     dispatch({ type: GET_USER_REQUEST });
     axios
-      .get(`${api_url}/api/user`)
+      .get(`${api_url}/api/employees/read`)
       .then(function (res) {
         console.log("res =>", res.data);
         dispatch({
@@ -76,7 +76,7 @@ export function getUserById(id) {
   return (dispatch) => {
     dispatch({ type: GET_USER_BYID_REQUEST });
     axios
-      .get(`${api_url}/api/user/${id}`)
+      .get(`${api_url}/api/employees/${id}`)
       .then(function (res) {
         console.log("res =>", res.data);
         dispatch({
@@ -101,7 +101,7 @@ export function updateUserById(id, data, history) {
   return (dispatch) => {
     dispatch({ type: UPDATE_USER_BYID_REQUEST });
     axios
-      .put(`${api_url}/api/user/${id}`, data)
+      .put(`${api_url}/api/employees/${id}`, data)
       .then(function (res) {
         console.log("res=>", res.data);
         setTimeout(() => {
@@ -130,7 +130,7 @@ export function deleteUserById(id) {
   return (dispatch) => {
     dispatch({ type: DELETE_USER_BYID_REQUEST });
     axios
-      .delete(`${api_url}/api/user/${id}`)
+      .delete(`${api_url}/api/employees/${id}`)
       .then(function (res) {
         console.log("res =>", res.data);
         dispatch({

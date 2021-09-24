@@ -5,11 +5,14 @@ import {
   TextField,
   Button,
   CircularProgress,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  Grid,
 } from "@material-ui/core";
 import {
   Add as AddIcon,
-  Edit as EditIcon,
-  Delete as DeleteIcon,
 } from "@material-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { createUser } from "../../actions/user";
@@ -29,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
       marginTop: -12,
       marginLeft: -12,
     },
+    input: {
+      color: '#ff0000',
+    }
   },
 }));
 
@@ -38,16 +44,15 @@ function Create() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.users?.loading);
   const [inputs, setInputs] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
+    gender: "Male",
+    job: "",
   });
-  const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    handleValidate(inputs);
-  }, [inputs]);
+  }, []);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -57,28 +62,7 @@ function Create() {
   function handleSubmit(e) {
     e.preventDefault();
     setSubmitted(true);
-    if (handleValidate(inputs)) {
-      dispatch(createUser(inputs, history));
-    }
-  }
-
-  function handleValidate(values) {
-    let errors = {};
-    let isValid = true;
-    if (!values["firstName"]) {
-      isValid = false;
-      errors["firstName"] = "Please enter first name";
-    }
-    if (!values["lastName"]) {
-      isValid = false;
-      errors["lastName"] = "Please enter last name.";
-    }
-    if (!values["email"]) {
-      isValid = false;
-      errors["email"] = "Please enter email address";
-    }
-    setErrors(errors);
-    return isValid;
+    dispatch(createUser(inputs, history));
   }
 
   return (
@@ -97,20 +81,31 @@ function Create() {
       >
         <TextField
           type="text"
-          name="firstName"
-          label="First Name"
+          name="name"
+          label="Name"
           value={inputs.firstName}
           onChange={handleChange}
           fullWidth
+          InputProps={{
+              className: classes.input,
+          }}
+          error={inputs.name === '' && submitted}
+          helperText={submitted? "Please Enter Your Name" : ''}
         />
-        <TextField
-          type="text"
-          name="lastName"
-          label="Last Name"
-          value={inputs.lastName}
-          onChange={handleChange}
-          fullWidth
-        />
+        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id="gender-label">Gender</InputLabel>
+          <Select
+            fullWidth
+            labelId="gender"
+            id="gender"
+            name="gender"
+            value={inputs.gender}
+            onChange={handleChange}
+          >
+            <MenuItem value={"Male"}>Male</MenuItem>
+            <MenuItem value={"Female"}>Female</MenuItem>
+          </Select>
+        </FormControl>
         <TextField
           type="email"
           name="email"
@@ -118,6 +113,18 @@ function Create() {
           value={inputs.email}
           onChange={handleChange}
           fullWidth
+          error={inputs.email === '' && submitted}
+          helperText={submitted? "Please Enter Your Email" : ''}
+        />
+        <TextField
+          type="text"
+          name="job"
+          label="Job"
+          value={inputs.job}
+          onChange={handleChange}
+          fullWidth
+          error={inputs.job === '' && submitted}
+          helperText={submitted? "Please Enter Your Job" : ''}
         />
         <Button
           disabled={loading}

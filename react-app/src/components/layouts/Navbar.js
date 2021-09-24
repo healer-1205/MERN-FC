@@ -1,14 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   makeStyles,
   AppBar,
   Toolbar,
   Typography,
   Button,
+  IconButton,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import {
   VerifiedUser,
+  Menu,
+  AdbRounded,
 } from "@material-ui/icons";
 import { logoutUser } from '../../actions/authActions';
 
@@ -21,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    textAlign: "center",
+    // textAlign: "center",
   },
   button: {
     margin: theme.spacing(1),
@@ -44,8 +48,19 @@ function Navbar() {
   return (
     <AppBar position="static">
       <Toolbar>
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          className={classes.menuButton}
+        >
+          <Menu />
+        </IconButton>
+        <Typography variant="h6" style={{marginRight: '3%'}}>
+          <Link to="/dashboard" style={{color: 'white', textDecoration: 'none'}}>Employees</Link>
+        </Typography>
         <Typography variant="h6" className={classes.title}>
-          ReactJs CRUD App With React Redux Thunk
+          <Link to="/users" style={{color: 'white', textDecoration: 'none'}}>Users</Link>
         </Typography>
         <Button
           variant="contained"

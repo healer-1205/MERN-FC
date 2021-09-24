@@ -11,8 +11,8 @@ const EmployeeSchema = new Schema({
         type: String,
         required: true
     },
-    birthday: {
-        type: Date, 
+    email: {
+        type: String,
         required: true
     },
     job: {
