@@ -10,12 +10,12 @@ const {
 
 router.post("/create", createUser);
 
-router.get("/employee", readUser);
+router.get("/read", readUser);
 
-router.get("/employee/:employeeId", readUserById);
+router.get("/:employeeId", readUserById);
 
-router.put("/employee/:employeeId", updateUser);
+router.put("/:employeeId", updateUser);
 
-router.delete("/employee/:employeeId", deleteUser);
+router.delete("/:employeeId", deleteUser);
 
 module.exports = router;

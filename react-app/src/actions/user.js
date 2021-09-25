@@ -30,7 +30,7 @@ export function createUser(data, history) {
             type: CREATE_USER_SUCCESS,
             payload: res.data,
           });
-          history.push("/");
+          history.push("/dashboard");
         }, 1000);
       })
       .catch(function (error) {
@@ -78,7 +78,6 @@ export function getUserById(id) {
     axios
       .get(`${api_url}/api/employees/${id}`)
       .then(function (res) {
-        console.log("res =>", res.data);
         dispatch({
           type: GET_USER_BYID_SUCCESS,
           payload: res.data,

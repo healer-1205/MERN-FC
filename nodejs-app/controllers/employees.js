@@ -1,19 +1,20 @@
-const User = require("../models/Employee");
+const Employee = require("../models/Employee");
 
 exports.createUser = async (req, res) => {
-  if (!req.body.firstName || !req.body.lastName || !req.body.email) {
+  if (!req.body.name || !req.body.gender || !req.body.email || !req.body.job) {
     return res.status(422).json({
       status: 422,
       user: {
-        firstName: "firstName is required",
-        lastName: "lastName is required",
-        email: "enail is required",
+        name: "Name is required",
+        gender: "Gender is required",
+        email: "Email is required",
+        job: "Job is required",
       },
     });
   }
-  const user = new User(req.body);
+  const employee = new Employee(req.body);
   try {
-    await user.save();
+    await employee.save();
     res.status(201).json({
       status: 201,
       message: "Create successfully",
@@ -35,10 +36,10 @@ exports.createUser = async (req, res) => {
 
 exports.readUser = async (req, res) => {
   try {
-    const user = await User.find();
+    const employee = await Employee.find();
     res.status(200).send({
       status: 200,
-      response: user,
+      response: employee,
     });
   } catch (error) {
     res.status(500).send({
@@ -49,12 +50,12 @@ exports.readUser = async (req, res) => {
 };
 
 exports.readUserById = async (req, res) => {
-  const id = req.params.userId;
+  const id = req.params.employeeId;
   try {
-    const user = await User.findById(id);
+    const employee = await Employee.findById(id);
     res.status(200).send({
       status: 200,
-      response: user,
+      response: employee,
     });
   } catch (error) {
     res.status(500).send({
@@ -65,9 +66,9 @@ exports.readUserById = async (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
-  const id = req.params.userId;
+  const id = req.params.employeeId;
   try {
-    const user = await User.findByIdAndUpdate(id, req.body, {
+    const user = await Employee.findByIdAndUpdate(id, req.body, {
       new: true,
       useFindAndModify: false,
     });

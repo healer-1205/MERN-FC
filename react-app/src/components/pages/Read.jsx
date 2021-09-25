@@ -62,7 +62,6 @@ function Read() {
   }, []);
 
   useEffect(() => {
-    console.log('loading', loading)
     if (!loading) {
       setOpen(loading);
     }
@@ -101,8 +100,8 @@ function Read() {
               <TableCell>S.No</TableCell>
               <TableCell>Name</TableCell>
               <TableCell>Email</TableCell>
-              <TableCell>CreatedAt</TableCell>
-              <TableCell>UpdatedAt</TableCell>
+              <TableCell>Gender</TableCell>
+              <TableCell>Job</TableCell>
               <TableCell>Update</TableCell>
               <TableCell>Delete</TableCell>
             </TableRow>
@@ -113,10 +112,10 @@ function Read() {
                 <TableCell component="th" scope="row">
                   {index + 1}
                 </TableCell>
-                <TableCell>{row.firstName + " " + row.lastName}</TableCell>
+                <TableCell>{row.name}</TableCell>
                 <TableCell>{row.email}</TableCell>
-                <TableCell>{row.createdAt}</TableCell>
-                <TableCell>{row.updatedAt}</TableCell>
+                <TableCell>{row.gender}</TableCell>
+                <TableCell>{row.job}</TableCell>
                 <TableCell>
                   <Link to={`/update/${row._id}`}>
                     <EditIcon>edit</EditIcon>

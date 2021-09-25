@@ -5,6 +5,10 @@ import {
   TextField,
   Button,
   CircularProgress,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserById, updateUserById } from "../../actions/user";
@@ -34,9 +38,10 @@ function Update() {
   const loading = useSelector((state) => state.users?.loading);
   const user = useSelector((state) => state.users?.item);
   const [inputs, setInputs] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
+    gender: "",
     email: "",
+    job: "",
   });
   const [submitted, setSubmitted] = useState(false);
 
@@ -58,7 +63,7 @@ function Update() {
   function handleSubmit(e) {
     e.preventDefault();
     setSubmitted(true);
-    if (!inputs.firstName || !inputs.lastName || !inputs.email) {
+    if (!inputs.name || !inputs.job || !inputs.email) {
       return;
     }
     dispatch(updateUserById(id, inputs, history));
@@ -66,7 +71,7 @@ function Update() {
 
   return (
     <React.Fragment>
-      <h1 style={{ textAlign: "center" }}>Update User</h1>
+      <h1 style={{ textAlign: "center" }}>Update Member</h1>
       <form
         className={classes.root}
         style={{
@@ -78,25 +83,47 @@ function Update() {
         onSubmit={handleSubmit}
       >
         <TextField
-          name="firstName"
-          label="First Name"
-          value={inputs.firstName}
+          name="name"
+          type="text"
+          label="Name"
+          value={inputs.name}
           onChange={handleChange}
           fullWidth
+          error={inputs.name === '' && submitted}
+          helperText={inputs.name === '' && submitted ? "Please Enter Name" : ''}
         />
-        <TextField
-          name="lastName"
-          label="Last Name"
-          value={inputs.lastName}
-          onChange={handleChange}
-          fullWidth
-        />
+        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id="gender-label">Gender</InputLabel>
+          <Select
+            fullWidth
+            labelId="gender"
+            id="gender"
+            name="gender"
+            value={inputs.gender}
+            onChange={handleChange}
+          >
+            <MenuItem value={"Male"}>Male</MenuItem>
+            <MenuItem value={"Female"}>Female</MenuItem>
+          </Select>
+        </FormControl>
         <TextField
           name="email"
           label="Email"
           value={inputs.email}
           onChange={handleChange}
           fullWidth
+          error={inputs.email === '' && submitted}
+          helperText={inputs.email === '' && submitted ? "Please Enter email" : ''}
+        />
+        <TextField
+          type="text"
+          name="job"
+          label="Job"
+          value={inputs.job}
+          onChange={handleChange}
+          fullWidth
+          error={inputs.Job === '' && submitted}
+          helperText={inputs.Job === '' && submitted ? "Please Enter Job" : ''}
         />
         <Button
           disabled={loading}
@@ -107,7 +134,7 @@ function Update() {
           Submit
         </Button>
         {loading && (
-          <CircularProgress size={24} className={classes.buttonProgress} />
+          <CircularProgress size={24} className={classes.buttonProgress} color="secondary" />
         )}
       </form>
     </React.Fragment>

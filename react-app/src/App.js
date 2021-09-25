@@ -45,7 +45,7 @@ function App() {
         <Switch>
           <PrivateRoute exact path="/dashboard" component={(props) => <Read {...props}/>} />
           <PrivateRoute path="/create" exact component={Create} />
-          <PrivateRoute path="/update/:id" exact component={Update} />
+          <PrivateRoute path="/update/:id" exact component={(props) => <Update {...props}/>} />
         </Switch>
       </Router>
     </Provider>
