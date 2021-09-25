@@ -12,7 +12,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   VerifiedUser,
   Menu,
-  AdbRounded,
 } from "@material-ui/icons";
 import { logoutUser } from '../../actions/authActions';
 
