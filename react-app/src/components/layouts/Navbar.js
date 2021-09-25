@@ -57,7 +57,7 @@ function Navbar() {
           <Menu />
         </IconButton>
         <Typography variant="h6" style={{marginRight: '3%'}}>
-          <Link to="/dashboard" style={{color: 'white', textDecoration: 'none'}}>Dashboard</Link>
+          <Link to="/dashboard" style={{color: 'white', textDecoration: 'none'}}>Employee</Link>
         </Typography>
         <Typography variant="h6" className={classes.title}>
           <Link to="/users" style={{color: 'white', textDecoration: 'none'}}>Users</Link>
