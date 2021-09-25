@@ -13,6 +13,7 @@ exports.createUser = async (req, res) => {
     });
   }
   const employee = new Employee(req.body);
+  
   try {
     await employee.save();
     res.status(201).json({
