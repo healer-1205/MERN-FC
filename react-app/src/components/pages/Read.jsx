@@ -83,14 +83,14 @@ function Read() {
   return (
     <React.Fragment>
       <Navbar />
-      <Link to="/create">
+      <Link to="/create" style={{textDecoration: 'none'}}>
         <Button
           variant="contained"
           color="primary"
           className={classes.button}
           startIcon={<AddIcon />}
         >
-          Create User
+          Create Employee
         </Button>
       </Link>
       <TableContainer component={Paper}>
