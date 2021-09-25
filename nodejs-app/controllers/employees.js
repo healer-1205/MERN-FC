@@ -75,7 +75,7 @@ exports.updateUser = async (req, res) => {
     if (!user) {
       return res.status(500).send({
         status: 500,
-        message: `user not found with id ${id}`,
+        message: `user not   found with id ${id}`,
       });
     }
     res.status(200).send({
