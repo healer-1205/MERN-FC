@@ -10,9 +10,11 @@ import { Provider } from "react-redux"; //
 import Login from "./components/auth/Login";  //
 import Register from "./components/auth/Register";  //
 import PrivateRoute from "./private-route/PrivateRoute"; //
+import Dashboard from "./components/dashboard/dashboard"; //
 import Read from "./components/pages/Read";
 import Create from "./components/pages/Create";
 import Update from "./components/pages/Update";
+// import { Dashboard } from "@material-ui/icons";
 
 // Check for token to keep user logged in 
 if (localStorage.jwtToken) {
@@ -43,7 +45,8 @@ function App() {
           <Route exact path="/login" component={(props) => <Login {...props}/>} />
           <Route path="/register" exact component={(props) => <Register {...props}/>} />
         <Switch>
-          <PrivateRoute exact path="/dashboard" component={(props) => <Read {...props}/>} />
+          <PrivateRoute exact path="/dashboard" component={(props) => <Dashboard {...props}/>} />
+          <PrivateRoute exact path="/read" component={(props) => <Read {...props}/>} />
           <PrivateRoute path="/create" exact component={Create} />
           <PrivateRoute path="/update/:id" exact component={(props) => <Update {...props}/>} />
         </Switch>
