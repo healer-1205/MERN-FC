@@ -5,16 +5,18 @@ import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
 import { TextField, Button } from "@material-ui/core";
 import "./login.css";
+  import store from '../../store/store';
 
 class Login extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             email: "",
             password: "",
-            errors: {}
+            error: this.props.auth.error
         };
     }
+  
 
     componentDidMount() {
         // If logged in and user navigates to Register page, should redirect them to dashboard
@@ -30,7 +32,7 @@ class Login extends Component {
 
         if (nextProps.errors) {
             this.setState({
-                errors: nextProps.errors
+                error: nextProps.error
             });
         }
     }
@@ -45,9 +47,16 @@ class Login extends Component {
             password: this.state.password
         };
         this.props.loginUser(userData);
+        store.subscribe(() => {
+            this.setState({
+                error: this.props.auth.error
+            }, () => {
+                console.log(this.props.auth.error)
+            });
+        });
     };
     render() {
-        const { errors } = this.state;
+        const { error } = this.state;
         return (
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10%' }}>
                 <form noValidate onSubmit={this.onSubmit} className="_background">
@@ -62,12 +71,9 @@ class Login extends Component {
                             variant="outlined"
                             onChange={this.onChange}
                             value={this.state.email}
-                            error={errors.email}
+                            error={error === '' ? false : true}
+                            helperText={error.emailnotfound}
                             type="email" />
-                        <span className='red-text'>
-                            {errors.email}
-                            {errors.emailnotfound}
-                        </span>
                     </div>
                     <div className="input-field col s12" style={{ marginTop: '5%' }}>
                         <TextField
@@ -77,12 +83,9 @@ class Login extends Component {
                             variant="outlined"
                             onChange={this.onChange}
                             value={this.state.password}
-                            error={errors.password}
+                            error={error === '' ? false : true}
+                            helperText={error.passwordincorrect}
                             type="password" />
-                        <span className='red-text'>
-                            {errors.password}
-                            {errors.passwordincorrect}
-                        </span>
                     </div>
                     <div className="row">
                         <Button

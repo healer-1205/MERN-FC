@@ -47,19 +47,17 @@ function Navbar() {
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          className={classes.menuButton}
-        >
-          <Menu />
-        </IconButton>
         <Typography variant="h6" style={{marginRight: '3%'}}>
-          <Link to="/dashboard" style={{color: 'white', textDecoration: 'none'}}>Employee</Link>
+          <Link to="/dashboard" style={{color: 'white', textDecoration: 'none'}}>Dashboard</Link>
+        </Typography>
+        <Typography variant="h6" style={{marginRight: '3%'}}>
+          <Link to="#aboutme" style={{color: 'white', textDecoration: 'none'}}>AboutMe</Link>
+        </Typography>
+        <Typography variant="h6" style={{marginRight: '3%'}}>
+          <Link to="#skills" style={{color: 'white', textDecoration: 'none'}}>Skills</Link>
         </Typography>
         <Typography variant="h6" className={classes.title}>
-          <Link to="/users" style={{color: 'white', textDecoration: 'none'}}>Users</Link>
+          <Link to="/read" style={{color: 'white', textDecoration: 'none'}}>Users</Link>
         </Typography>
         <Button
           variant="contained"
