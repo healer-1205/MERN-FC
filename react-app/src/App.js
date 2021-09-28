@@ -44,7 +44,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <div id="_background">
-          <Route path="/dashboard" exact component={(props) => <Dashboard {...props} />} />
+          <Route path="/" exact component={(props) => <Dashboard {...props} />} />
         </div>
         <Route exact path="/login" component={(props) => <Login {...props} />} />
         <Route path="/register" exact component={(props) => <Register {...props} />} />
