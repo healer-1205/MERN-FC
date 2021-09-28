@@ -1,0 +1,14 @@
+#_background {
+  background-color: #889289;
+  min-width: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: "Cursive";
+}
+
+@font-face {
+  font-family: "Staatliches";
+  src: url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+}

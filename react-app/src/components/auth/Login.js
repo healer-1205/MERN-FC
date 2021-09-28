@@ -5,7 +5,7 @@ import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
 import { TextField, Button } from "@material-ui/core";
 import "./login.css";
-  import store from '../../store/store';
+import store from '../../store/store';
 
 class Login extends Component {
     constructor(props) {
@@ -50,8 +50,6 @@ class Login extends Component {
         store.subscribe(() => {
             this.setState({
                 error: this.props.auth.error
-            }, () => {
-                console.log(this.props.auth.error)
             });
         });
     };

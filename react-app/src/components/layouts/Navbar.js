@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import {
   makeStyles,
   AppBar,
   Toolbar,
   Typography,
   Button,
-  IconButton,
+  Link,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -45,16 +45,22 @@ function Navbar() {
     dispatch(logoutUser());
   };
   return (
-    <AppBar position="static">
+    <AppBar position="static" style={{position: "fixed", top: "0"}}>
       <Toolbar>
         <Typography variant="h6" style={{marginRight: '3%'}}>
-          <Link to="/dashboard" style={{color: 'white', textDecoration: 'none'}}>Dashboard</Link>
+          <Link href="#home" style={{color: 'white', textDecoration: 'none'}}>Home</Link>
         </Typography>
         <Typography variant="h6" style={{marginRight: '3%'}}>
-          <Link to="#aboutme" style={{color: 'white', textDecoration: 'none'}}>AboutMe</Link>
+          <Link href="#aboutMe" style={{color: 'white', textDecoration: 'none'}}>AboutMe</Link>
         </Typography>
         <Typography variant="h6" style={{marginRight: '3%'}}>
-          <Link to="#skills" style={{color: 'white', textDecoration: 'none'}}>Skills</Link>
+          <Link href="#skills" style={{color: 'white', textDecoration: 'none'}}>Skills</Link>
+        </Typography>
+        <Typography variant="h6" style={{marginRight: '3%'}}>
+          <Link href="#projects" style={{color: 'white', textDecoration: 'none'}}>Projects</Link>
+        </Typography>
+        <Typography variant="h6" style={{marginRight: '3%'}}>
+          <Link href="#contacts" style={{color: 'white', textDecoration: 'none'}}>Contacts</Link>
         </Typography>
         <Typography variant="h6" className={classes.title}>
           <Link to="/read" style={{color: 'white', textDecoration: 'none'}}>Users</Link>

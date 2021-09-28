@@ -15,6 +15,8 @@ import Read from "./components/pages/Read";
 import Create from "./components/pages/Create";
 import Update from "./components/pages/Update";
 // import { Dashboard } from "@material-ui/icons";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 // Check for token to keep user logged in 
 if (localStorage.jwtToken) {
@@ -41,14 +43,15 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-          <Route path="/" exact component={(props) => <Login {...props}/>} />
-          <Route exact path="/login" component={(props) => <Login {...props}/>} />
-          <Route path="/register" exact component={(props) => <Register {...props}/>} />
+        <div id="_background">
+          <Route path="/dashboard" exact component={(props) => <Dashboard {...props} />} />
+        </div>
+        <Route exact path="/login" component={(props) => <Login {...props} />} />
+        <Route path="/register" exact component={(props) => <Register {...props} />} />
         <Switch>
-          <PrivateRoute exact path="/dashboard" component={(props) => <Dashboard {...props}/>} />
-          <PrivateRoute exact path="/read" component={(props) => <Read {...props}/>} />
+          <PrivateRoute exact path="/read" component={(props) => <Read {...props} />} />
           <PrivateRoute path="/create" exact component={Create} />
-          <PrivateRoute path="/update/:id" exact component={(props) => <Update {...props}/>} />
+          <PrivateRoute path="/update/:id" exact component={(props) => <Update {...props} />} />
         </Switch>
       </Router>
     </Provider>
